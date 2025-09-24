@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true
+  },
   env: {
     PORT: '3100',
-  },
-  images: {
-    domains: [],
-    formats: ['image/webp', 'image/avif'],
   },
   compress: true,
 }
