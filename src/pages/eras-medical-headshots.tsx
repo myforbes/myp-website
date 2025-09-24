@@ -1,0 +1,962 @@
+import Layout from '@/components/Layout'
+import Image from 'next/image'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useEffect, useState } from 'react'
+import { 
+  GraduationCap,
+  Clock,
+  CheckCircle,
+  Camera,
+  FileImage,
+  AlertCircle,
+  Star,
+  Calendar,
+  Phone,
+  DollarSign,
+  Zap,
+  Award,
+  Users,
+  ArrowRight
+} from 'lucide-react'
+
+export default function ErasMedicalHeadshots() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start']
+  })
+
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e
+      const { innerWidth, innerHeight } = window
+      
+      setMousePosition({
+        x: clientX / innerWidth,
+        y: clientY / innerHeight
+      })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  const requirements2025 = [
+    {
+      title: "NEW: Square Format Option",
+      spec: "5\" x 5\" (New 2025 Format)",
+      description: "Latest ERAS portal update supports square format",
+      important: true
+    },
+    {
+      title: "Traditional Format",
+      spec: "2.5\" x 3.5\" (Classic Format)",
+      description: "Still accepted by most ERAS portals",
+      important: false
+    },
+    {
+      title: "Resolution",
+      spec: "150 DPI minimum",
+      description: "High-resolution for professional quality",
+      important: false
+    },
+    {
+      title: "File Size",
+      spec: "Under 150KB",
+      description: "Optimized for ERAS portal upload",
+      important: false
+    }
+  ]
+
+  const photoGuidelines = [
+    {
+      icon: Camera,
+      title: "Professional Appearance",
+      points: [
+        "Business professional attire (suit or blazer)",
+        "Conservative colors (navy, black, gray)",
+        "Minimal jewelry and accessories",
+        "Professional grooming and styling"
+      ]
+    },
+    {
+      icon: FileImage,
+      title: "Technical Standards",
+      points: [
+        "Color photograph required",
+        "White or light gray background",
+        "Face centered in frame",
+        "Proper shoulder and head cropping"
+      ]
+    },
+    {
+      icon: GraduationCap,
+      title: "ERAS Compliance",
+      points: [
+        "Frontal view head & shoulders",
+        "Professional facial expression",
+        "Clear, well-lit image",
+        "No filters or heavy editing"
+      ]
+    }
+  ]
+
+  const serviceHighlights = [
+    {
+      icon: Clock,
+      title: "24-Hour Delivery",
+      description: "Rush turnaround for urgent applications",
+      accent: "text-red-500"
+    },
+    {
+      icon: DollarSign,
+      title: "$200 Per Photo",
+      description: "Competitive pricing for medical students",
+      accent: "text-green-500"
+    },
+    {
+      icon: Zap,
+      title: "15-Minute Session",
+      description: "Quick, efficient photo session",
+      accent: "text-blue-500"
+    },
+    {
+      icon: Award,
+      title: "ERAS Expertise",
+      description: "Specialized in medical residency photos",
+      accent: "text-purple-500"
+    }
+  ]
+
+  const processSteps = [
+    {
+      step: "01",
+      title: "Book Your Session",
+      description: "Schedule online or call for urgent appointments"
+    },
+    {
+      step: "02",
+      title: "Quick 15-Min Session",
+      description: "Professional headshots with ERAS-compliant setup"
+    },
+    {
+      step: "03",
+      title: "Format Confirmation",
+      description: "We provide both 2.5\"x3.5\" and 5\"x5\" formats"
+    },
+    {
+      step: "04",
+      title: "24-Hour Delivery",
+      description: "Professionally edited photos delivered digitally"
+    }
+  ]
+
+  return (
+    <div ref={containerRef}>
+      <Layout 
+        title="ERAS Medical Headshots | 24-Hour Delivery for Residency Applications"
+        description="Professional ERAS medical headshots for residency applications. 24-hour delivery, $200, 15-minute sessions. Both traditional 2.5x3.5 and new 5x5 formats available."
+      >
+        <style jsx>{`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+          
+          .serif-font {
+            font-family: 'Playfair Display', serif;
+          }
+          
+          .sans-font {
+            font-family: 'Inter', sans-serif;
+          }
+          
+          .morphic-glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          }
+          
+          .liquid-glass {
+            background: linear-gradient(135deg, 
+              rgba(244, 202, 120, 0.3) 0%,
+              rgba(255, 255, 255, 0.2) 25%,
+              rgba(185, 145, 77, 0.25) 50%,
+              rgba(255, 255, 255, 0.15) 75%,
+              rgba(244, 202, 120, 0.2) 100%
+            );
+            backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(244, 202, 120, 0.3);
+            box-shadow: 
+              0 8px 32px rgba(244, 202, 120, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4),
+              inset 0 -1px 0 rgba(244, 202, 120, 0.2);
+          }
+          
+          .liquid-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.6;
+            animation: float 20s ease-in-out infinite;
+          }
+          
+          .liquid-blob-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(244, 202, 120, 0.4) 0%, transparent 70%);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+          }
+          
+          .liquid-blob-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(185, 145, 77, 0.3) 0%, transparent 70%);
+            top: 60%;
+            right: 15%;
+            animation-delay: -7s;
+          }
+          
+          .liquid-blob-3 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(244, 202, 120, 0.35) 0%, transparent 70%);
+            top: 40%;
+            right: 30%;
+            animation-delay: -14s;
+          }
+          
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+              transform: translateY(-30px) rotate(120deg);
+            }
+            66% {
+              transform: translateY(20px) rotate(240deg);
+            }
+          }
+          
+          .glass-card {
+            background: linear-gradient(135deg,
+              rgba(255, 255, 255, 0.4) 0%,
+              rgba(244, 202, 120, 0.1) 50%,
+              rgba(255, 255, 255, 0.3) 100%
+            );
+            backdrop-filter: blur(15px) saturate(120%);
+            border: 1px solid rgba(244, 202, 120, 0.2);
+            box-shadow: 
+              0 12px 40px rgba(244, 202, 120, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.6);
+          }
+          
+          .medical-gradient {
+            background: linear-gradient(135deg, #f4ca78 0%, #b9914d 100%);
+          }
+          
+          .neural-grid {
+            background-image: 
+              radial-gradient(circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(244, 202, 120, 0.2) 1px, transparent 1px),
+              radial-gradient(circle at ${(1 - mousePosition.x) * 100}% ${(1 - mousePosition.y) * 100}%, rgba(185, 145, 77, 0.15) 1px, transparent 1px);
+            background-size: 50px 50px, 80px 80px;
+            animation: medical-pulse 20s ease-in-out infinite;
+          }
+          
+          @keyframes medical-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+          }
+          
+          .requirement-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(244, 202, 120, 0.1) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(244, 202, 120, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          
+          .requirement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(244, 202, 120, 0.2);
+          }
+          
+          .urgent-badge {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            animation: urgent-pulse 2s ease-in-out infinite;
+          }
+          
+          @keyframes urgent-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+          }
+        `}</style>
+
+        {/* Hero Section */}
+        <section className="relative min-h-screen overflow-hidden bg-gray-50">
+          
+          {/* Liquid Glass Blobs */}
+          <div className="liquid-blob liquid-blob-1"></div>
+          <div className="liquid-blob liquid-blob-2"></div>
+          <div className="liquid-blob liquid-blob-3"></div>
+          
+          {/* Animated Background */}
+          <div className="absolute inset-0 neural-grid opacity-40" />
+          
+          <motion.div 
+            className="relative z-10 min-h-screen flex items-center"
+            style={{ y, opacity }}
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                
+                {/* Content */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                >
+                  {/* Urgent Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                    className="mb-6"
+                  >
+                    <div className="urgent-badge inline-flex items-center px-4 py-2 rounded-full sans-font text-sm font-bold text-white tracking-wide uppercase">
+                      <Clock className="h-4 w-4 mr-2" />
+                      24-Hour Delivery Available
+                    </div>
+                  </motion.div>
+
+                  <motion.h1 
+                    className="serif-font text-5xl lg:text-7xl font-bold leading-tight mb-8 text-gray-900"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 1 }}
+                  >
+                    ERAS Medical
+                    <span className="block text-gray-900 italic">
+                      Headshots
+                    </span>
+                  </motion.h1>
+
+                  <motion.p 
+                    className="sans-font text-xl text-gray-600 leading-relaxed mb-10 font-light"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 1 }}
+                  >
+                    Professional residency application photos that meet all 2025 ERAS requirements. 
+                    Quick 15-minute sessions with 24-hour delivery to meet your urgent deadlines.
+                  </motion.p>
+
+                  {/* Key Features */}
+                  <motion.div 
+                    className="grid grid-cols-2 gap-6 mb-10"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8, duration: 0.8 }}
+                  >
+                    {serviceHighlights.map((highlight, index) => (
+                      <div key={index} className="flex items-center space-x-3">
+                        <div className={`w-10 h-10 rounded-full medical-gradient flex items-center justify-center`}>
+                          <highlight.icon className="h-5 w-5 text-white" />
+                        </div>
+                        <div>
+                          <div className={`sans-font font-bold text-gray-900`}>{highlight.title}</div>
+                          <div className="sans-font text-sm text-gray-600">{highlight.description}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1, duration: 0.8 }}
+                    className="flex flex-col sm:flex-row gap-4"
+                  >
+                    <motion.a
+                      href="/contact"
+                      className="inline-flex items-center px-8 py-4 medical-gradient text-white font-semibold rounded-full hover:shadow-xl transition-all duration-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Calendar className="mr-2 h-5 w-5" />
+                      Book Session Now
+                    </motion.a>
+                    
+                    <motion.a
+                      href="tel:703-957-0643"
+                      className="inline-flex items-center px-8 py-4 morphic-glass text-gray-700 font-semibold rounded-full hover:shadow-xl transition-all duration-300"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <Phone className="mr-2 h-5 w-5" />
+                      Urgent: (703) 957-0643
+                    </motion.a>
+                  </motion.div>
+                </motion.div>
+
+                {/* Visual Element */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                  className="relative"
+                >
+                  <div className="relative max-w-lg mx-auto">
+                    <motion.div 
+                      className="liquid-glass rounded-3xl p-6 relative"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      {/* 2025 Format Preview */}
+                      <div className="space-y-6">
+                        <div className="text-center mb-6">
+                          <h3 className="serif-font text-2xl font-bold text-gray-900 mb-2">2025 ERAS Formats</h3>
+                          <p className="sans-font text-gray-600">Both formats available</p>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-4">
+                          {/* Traditional Format */}
+                          <div className="text-center">
+                            <div className="aspect-[2.5/3.5] bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg mb-3 overflow-hidden border-2 border-blue-200 relative">
+                              <Image
+                                src="/images/James_Ryan_538-MarquelYvette0302-retouched.jpg"
+                                alt="Traditional ERAS format example"
+                                fill
+                                className="object-cover"
+                              />
+                              <div className="absolute bottom-1 left-1 bg-black/70 text-white px-2 py-1 rounded text-xs font-bold">
+                                2.5" × 3.5"
+                              </div>
+                            </div>
+                            <p className="sans-font text-sm font-medium text-gray-700">Traditional</p>
+                          </div>
+                          
+                          {/* New Square Format */}
+                          <div className="text-center">
+                            <div className="aspect-square bg-gradient-to-br from-blue-100 to-indigo-200 rounded-lg mb-3 overflow-hidden border-2 border-blue-500 relative">
+                              <Image
+                                src="/images/Farrell_Holly_952-MarquelYvette0023-ig.jpg"
+                                alt="New square ERAS format example"
+                                fill
+                                className="object-cover"
+                              />
+                              <div className="absolute bottom-1 left-1 medical-gradient text-white px-2 py-1 rounded text-xs font-bold">
+                                5" × 5"
+                              </div>
+                            </div>
+                            <p className="sans-font text-sm font-medium text-blue-600">NEW 2025</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Example Photos Section */}
+        <section className="py-24 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="serif-font text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Example ERAS <span className="text-gray-900 italic">Photos</span>
+              </h2>
+              <p className="sans-font text-xl text-gray-600">
+                Professional headshots that meet all ERAS requirements and help medical students stand out
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {/* Example Photo 1 - Traditional Format */}
+              <motion.a
+                href="/contact"
+                className="glass-card rounded-3xl overflow-hidden shadow-lg block cursor-pointer"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, duration: 0.8 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="aspect-[2.5/3.5] bg-gradient-to-br from-gray-100 to-gray-200 relative flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-32 h-40 bg-gradient-to-br from-gray-300 to-gray-400 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <Camera className="h-12 w-12 text-gray-600" />
+                    </div>
+                    <div className="text-sm font-semibold text-gray-700">Professional Portrait</div>
+                  </div>
+                  <div className="absolute top-4 left-4 bg-gray-900 text-white px-3 py-1 rounded-full text-xs font-bold">
+                    2.5" × 3.5"
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="serif-font text-lg font-bold text-gray-900 mb-2">Traditional Format</h3>
+                  <p className="sans-font text-sm text-gray-600">Classic ERAS headshot with professional business attire and neutral background</p>
+                </div>
+              </motion.a>
+
+              {/* Example Photo 2 - Square Format */}
+              <motion.a
+                href="/contact"
+                className="glass-card rounded-3xl overflow-hidden shadow-lg block cursor-pointer"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-32 h-32 bg-gradient-to-br from-gray-300 to-gray-400 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <Star className="h-12 w-12 text-gray-600" />
+                    </div>
+                    <div className="text-sm font-semibold text-gray-700">Modern Portrait</div>
+                  </div>
+                  <div className="absolute top-4 left-4 medical-gradient text-white px-3 py-1 rounded-full text-xs font-bold">
+                    5" × 5" NEW
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="serif-font text-lg font-bold text-gray-900 mb-2">New Square Format</h3>
+                  <p className="sans-font text-sm text-gray-600">2025 ERAS square format with enhanced professional presentation</p>
+                </div>
+              </motion.a>
+
+              {/* Example Photo 3 - Female Medical Student */}
+              <motion.a
+                href="/contact"
+                className="glass-card rounded-3xl overflow-hidden shadow-lg block cursor-pointer"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="aspect-[2.5/3.5] bg-gradient-to-br from-gray-100 to-gray-200 relative flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-32 h-40 bg-gradient-to-br from-gray-300 to-gray-400 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <GraduationCap className="h-12 w-12 text-gray-600" />
+                    </div>
+                    <div className="text-sm font-semibold text-gray-700">Medical Student</div>
+                  </div>
+                  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                    APPROVED
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="serif-font text-lg font-bold text-gray-900 mb-2">Professional Style</h3>
+                  <p className="sans-font text-sm text-gray-600">Confident, approachable expression with appropriate medical field styling</p>
+                </div>
+              </motion.a>
+            </div>
+
+            {/* Photo Standards */}
+            <motion.div
+              className="liquid-glass rounded-2xl p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              <div className="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                  <div className="w-16 h-16 rounded-full medical-gradient flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="h-8 w-8 text-white" />
+                  </div>
+                  <h4 className="serif-font text-lg font-bold text-gray-900 mb-3">ERAS Compliant</h4>
+                  <p className="sans-font text-gray-600">All photos meet current ERAS technical specifications and formatting requirements</p>
+                </div>
+                <div>
+                  <div className="w-16 h-16 rounded-full medical-gradient flex items-center justify-center mx-auto mb-4">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
+                  <h4 className="serif-font text-lg font-bold text-gray-900 mb-3">Program Director Approved</h4>
+                  <p className="sans-font text-gray-600">Professional styling that resonates with medical residency program directors</p>
+                </div>
+                <div>
+                  <div className="w-16 h-16 rounded-full medical-gradient flex items-center justify-center mx-auto mb-4">
+                    <Award className="h-8 w-8 text-white" />
+                  </div>
+                  <h4 className="serif-font text-lg font-bold text-gray-900 mb-3">Confidence Building</h4>
+                  <p className="sans-font text-gray-600">Professional portraits that enhance your application and boost your confidence</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* 2025 Requirements Section */}
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="text-center mb-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-800 rounded-full font-semibold text-sm mb-6">
+                <AlertCircle className="h-4 w-4 mr-2" />
+                UPDATED FOR 2025
+              </div>
+              <h2 className="serif-font text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                ERAS Photo <span className="text-gray-900 italic">Requirements</span>
+              </h2>
+              <p className="sans-font text-xl text-gray-600 max-w-3xl mx-auto">
+                Important format changes for 2025! We provide both traditional and new square formats to ensure compatibility.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {requirements2025.map((req, index) => (
+                <motion.div
+                  key={req.title}
+                  className={`requirement-card rounded-2xl p-6 text-center ${req.important ? 'ring-2 ring-blue-500' : ''}`}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  whileHover={{ y: -5 }}
+                >
+                  {req.important && (
+                    <div className="inline-flex items-center px-2 py-1 medical-gradient text-white rounded-full text-xs font-bold mb-4">
+                      NEW
+                    </div>
+                  )}
+                  <h3 className="serif-font text-lg font-bold text-gray-900 mb-2">{req.title}</h3>
+                  <div className="sans-font text-2xl font-black text-gray-900 mb-3">{req.spec}</div>
+                  <p className="sans-font text-sm text-gray-600">{req.description}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-start space-x-4">
+                <AlertCircle className="h-6 w-6 text-yellow-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="serif-font text-lg font-bold text-yellow-800 mb-2">Important Notice</h4>
+                  <p className="sans-font text-yellow-700 leading-relaxed">
+                    ERAS is transitioning to new formats in 2025. Some portals accept the new 5"×5" square format, 
+                    while others still require the traditional 2.5"×3.5". We provide both formats to ensure compatibility 
+                    with your specific ERAS portal requirements.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Why Choose Marquel Section */}
+        <section className="py-24 bg-gray-900">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="serif-font text-4xl lg:text-5xl font-bold text-white mb-6">
+                Why Medical Students Choose 
+                <span className="block text-white italic">Marquel Forbes</span>
+              </h2>
+              <p className="sans-font text-xl text-gray-300 max-w-3xl mx-auto">
+                The trusted ERAS headshot specialist for Northern Virginia medical students
+              </p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              {/* Expert Credentials */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="space-y-8">
+                  <div className="bg-gray-800 rounded-2xl p-6">
+                    <div className="flex items-center mb-4">
+                      <Award className="h-6 w-6 text-yellow-400 mr-3" />
+                      <h3 className="serif-font text-xl font-bold text-white">ERAS Specialist</h3>
+                    </div>
+                    <p className="sans-font text-gray-300 leading-relaxed">
+                      12+ years specializing exclusively in medical and executive headshots. I understand 
+                      the critical importance of your ERAS photo and the pressure you're under during application season.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-800 rounded-2xl p-6">
+                    <div className="flex items-center mb-4">
+                      <Users className="h-6 w-6 text-yellow-400 mr-3" />
+                      <h3 className="serif-font text-xl font-bold text-white">Medical Student Focused</h3>
+                    </div>
+                    <p className="sans-font text-gray-300 leading-relaxed">
+                      I work exclusively with medical students, residents, and physicians. Unlike general portrait 
+                      photographers, I know exactly what program directors are looking for in your headshot.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-800 rounded-2xl p-6">
+                    <div className="flex items-center mb-4">
+                      <Clock className="h-6 w-6 text-yellow-400 mr-3" />
+                      <h3 className="serif-font text-xl font-bold text-white">Guaranteed Delivery</h3>
+                    </div>
+                    <p className="sans-font text-gray-300 leading-relaxed">
+                      When ERAS deadlines approach, every hour counts. My 24-hour delivery guarantee has 
+                      saved countless applications from late submissions. No other photographer offers this commitment.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Testimonial/Results */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="bg-gray-800 rounded-3xl p-8">
+                  <div className="text-center mb-8">
+                    <div className="w-16 h-16 rounded-full medical-gradient flex items-center justify-center mx-auto mb-4">
+                      <GraduationCap className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="serif-font text-2xl font-bold text-white mb-4">The ERAS Expert</h3>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="bg-gray-700 rounded-xl p-6">
+                      <div className="text-3xl font-black text-white mb-2">500+</div>
+                      <div className="sans-font text-white font-semibold">Medical Students Photographed</div>
+                      <div className="sans-font text-sm text-gray-300">For ERAS applications since 2012</div>
+                    </div>
+
+                    <div className="bg-gray-700 rounded-xl p-6">
+                      <div className="text-3xl font-black text-white mb-2">100%</div>
+                      <div className="sans-font text-white font-semibold">ERAS Compliance Rate</div>
+                      <div className="sans-font text-sm text-gray-300">Never had a photo rejected by ERAS</div>
+                    </div>
+
+                    <div className="bg-gray-700 rounded-xl p-6">
+                      <div className="text-3xl font-black text-white mb-2">24hrs</div>
+                      <div className="sans-font text-white font-semibold">Delivery Guarantee</div>
+                      <div className="sans-font text-sm text-gray-300">No exceptions, no delays, no stress</div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 p-4 bg-gray-700 rounded-xl">
+                    <p className="sans-font text-sm text-gray-300 text-center italic">
+                      "Don't trust your medical career to a general photographer. 
+                      Choose the ERAS specialist who understands what's at stake."
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Photo Guidelines */}
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="serif-font text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Photo <span className="text-gray-900 italic">Guidelines</span>
+              </h2>
+              <p className="sans-font text-xl text-gray-600">
+                Ensuring your photo meets all ERAS compliance standards
+              </p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              {photoGuidelines.map((guideline, index) => (
+                <motion.div
+                  key={guideline.title}
+                  className="morphic-glass rounded-3xl p-8"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2, duration: 0.8 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="w-16 h-16 rounded-full medical-gradient flex items-center justify-center mx-auto mb-6">
+                    <guideline.icon className="h-8 w-8 text-white" />
+                  </div>
+                  
+                  <h3 className="serif-font text-2xl font-bold text-gray-900 mb-6 text-center">{guideline.title}</h3>
+                  
+                  <div className="space-y-4">
+                    {guideline.points.map((point, idx) => (
+                      <div key={idx} className="flex items-start space-x-3">
+                        <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span className="sans-font text-gray-700">{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="serif-font text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Our <span className="text-gray-900 italic">Process</span>
+              </h2>
+              <p className="sans-font text-xl text-gray-600">
+                Quick, efficient, and designed for urgent medical school deadlines
+              </p>
+            </motion.div>
+
+            <div className="space-y-8">
+              {processSteps.map((step, index) => (
+                <motion.div
+                  key={step.step}
+                  className="grid lg:grid-cols-3 gap-8 items-center"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                >
+                  {/* Step Number */}
+                  <div className="text-center lg:text-left">
+                    <motion.div
+                      className="w-20 h-20 rounded-full medical-gradient flex items-center justify-center mx-auto lg:mx-0 mb-4"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="serif-font text-2xl font-black text-white">{step.step}</div>
+                    </motion.div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="lg:col-span-2">
+                    <h3 className="serif-font text-2xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                    <p className="sans-font text-lg text-gray-600 leading-relaxed">{step.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Process Summary */}
+            <motion.div
+              className="mt-12 glass-card rounded-2xl p-8 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <div className="flex items-center justify-center space-x-8 text-gray-900">
+                <div className="text-center">
+                  <div className="text-3xl font-black">15</div>
+                  <div className="text-sm font-semibold">Minutes</div>
+                </div>
+                <ArrowRight className="h-6 w-6" />
+                <div className="text-center">
+                  <div className="text-3xl font-black">24</div>
+                  <div className="text-sm font-semibold">Hours</div>
+                </div>
+                <ArrowRight className="h-6 w-6" />
+                <div className="text-center">
+                  <div className="text-3xl font-black">ERAS</div>
+                  <div className="text-sm font-semibold">Ready</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 bg-gray-900">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              <motion.div
+                className="w-20 h-20 rounded-full medical-gradient flex items-center justify-center mx-auto mb-8"
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              >
+                <GraduationCap className="h-10 w-10 text-white" />
+              </motion.div>
+
+              <h2 className="serif-font text-4xl lg:text-5xl font-bold text-white mb-8 italic">
+                Ready for your residency application?
+              </h2>
+              
+              <div className="medical-gradient rounded-2xl p-8 mb-10">
+                <div className="text-4xl font-black text-white mb-2">$200</div>
+                <div className="text-white/90 mb-4">Complete ERAS headshot package</div>
+                <div className="grid md:grid-cols-3 gap-4 text-sm text-white/80">
+                  <div>✓ 15-minute session</div>
+                  <div>✓ 24-hour delivery</div>
+                  <div>✓ Both 2025 formats</div>
+                </div>
+              </div>
+
+              <p className="sans-font text-xl text-gray-300 mb-10 leading-relaxed">
+                Don't let photo requirements delay your residency application. 
+                Get your ERAS-compliant headshots with guaranteed 24-hour delivery.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.a
+                  href="/contact"
+                  className="inline-flex items-center px-10 py-5 medical-gradient text-white text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Calendar className="mr-3 h-6 w-6" />
+                  Book Your Session
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </motion.a>
+                
+                <motion.a
+                  href="tel:703-957-0643"
+                  className="inline-flex items-center px-10 py-5 morphic-glass text-white text-lg font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Phone className="mr-3 h-6 w-6" />
+                  Urgent: (703) 957-0643
+                </motion.a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </Layout>
+    </div>
+  )
+}
