@@ -3,6 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'export',
   trailingSlash: true,
+  basePath: process.env.NODE_ENV === 'production' ? '/myp-website' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/myp-website/' : '',
   images: {
     unoptimized: true
   },
