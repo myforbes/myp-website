@@ -1,14 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-  ...(process.env.NODE_ENV === 'production' && {
-    output: 'export',
-    trailingSlash: true,
-  }),
+  reactStrictMode: true,
+  output: 'export',
+  trailingSlash: true,
   images: {
-    unoptimized: true,
+    unoptimized: true
   },
-  compress: true,
+  basePath: process.env.NODE_ENV === 'production' ? '/myp-website' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/myp-website/' : '',
 }
 
 module.exports = nextConfig
