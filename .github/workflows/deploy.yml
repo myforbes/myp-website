@@ -32,10 +32,14 @@ jobs:
           version: 8
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          cd photography-website
+          pnpm install --frozen-lockfile
 
       - name: Build with Next.js
-        run: pnpm build
+        run: |
+          cd photography-website
+          pnpm build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -43,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./photography-website/out
 
   deploy:
     environment:
