@@ -1,13 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  output: 'export',
-  trailingSlash: true,
+  reactStrictMode: false,
+  ...(process.env.NODE_ENV === 'production' && {
+    output: 'export',
+    trailingSlash: true,
+  }),
   images: {
-    unoptimized: true
-  },
-  env: {
-    PORT: '3100',
+    unoptimized: true,
   },
   compress: true,
 }
